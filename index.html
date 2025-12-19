@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .animated-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10rem;
+            font-weight: 700;
+            color: #f0f0f0;
+            display: flex;
+        }
+
+        .animated-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(60px) scale(0.7);
+            animation: floatIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes floatIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="https://tiwut.de/cookie.notice.js"></script>
+
+    <div id="loader-wrapper">
+        <h1 class="animated-text">Tiwut</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textContainer = document.querySelector('.animated-text');
+            const text = textContainer.textContent;
+            const letters = text.split('');
+            
+            textContainer.textContent = '';
+
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                span.style.animationDelay = `${index * 0.1}s`;
+                textContainer.appendChild(span);
+            });
+
+            const targetUrl = 'PHP/'; 
+            const minDisplayTime = 2500; 
+
+
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = targetUrl;
+            document.body.appendChild(iframe);
+
+            const redirectToSite = () => {
+                const loaderWrapper = document.getElementById('loader-wrapper');
+                loaderWrapper.style.opacity = '0';
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 800); 
+            };
+
+            const pageLoadPromise = new Promise(resolve => {
+                iframe.addEventListener('load', resolve, { once: true });
+            });
+
+            const minTimePromise = new Promise(resolve => {
+                setTimeout(resolve, minDisplayTime);
+            });
+
+            Promise.all([pageLoadPromise, minTimePromise]).then(redirectToSite);
+        });
+    </script>
+
+</body>
+</html>
