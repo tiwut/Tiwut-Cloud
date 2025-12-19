@@ -1,0 +1,13 @@
+{
+  "name": "TiwutCloud",
+  "short_name": "Tiwut",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#3b82f6",
+  "icons": [{
+    "src": "https://cdn-icons-png.flaticon.com/512/2150/2150447.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
