@@ -8,17 +8,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #020617; color: #000102; font-family: ui-sans-serif, system-ui; scroll-behavior: smooth; }
-        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent); }
+        body { 
+            background: #020617; 
+            color: #f8fafc; 
+            font-family: ui-sans-serif, system-ui; 
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: url('main.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.9));
+            backdrop-filter: blur(2px);
+        }
+
+        .glass { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255,255,255,0.08); 
+        }
+
         .step-number { background: linear-gradient(135deg, #3b82f6, #2563eb); }
         code { background: rgba(30, 41, 59, 0.8); padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #60a5fa; }
     </style>
 </head>
-<body class="hero-gradient">
+<body>
     <script data-goatcounter="https://tiwut.goatcounter.com/count"async src="//gc.zgo.at/count.js"></script>
     <script src="https://tiwut.de/cookie.notice.js"></script>
     <script src="https://tiwut.de/Script/enforce_https.js" defer></script>
+
+    <div class="bg-layer"></div>
+    <div class="bg-overlay"></div>
+
     <nav class="sticky top-0 z-50 glass m-4 rounded-[2rem] p-4 flex justify-between items-center max-w-6xl mx-auto shadow-2xl">
         <h1 class="text-xl font-black italic tracking-tighter ml-4">TIWUT<span class="text-blue-500">DOCS</span></h1>
         <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest">
@@ -26,54 +67,56 @@
             <a href="#setup" class="hover:text-blue-500 transition">Setup</a>
             <a href="#usage" class="hover:text-blue-500 transition">Usage</a>
         </div>
-        <a href="https://github.com/tiwut/Tiwut-Cloud" class="bg-blue-600 px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-500 transition">Get Cloud</a>
+        <a href="https://github.com/tiwut/Tiwut-Cloud/tree/main/PHP" class="bg-blue-600 px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-500 transition">Get Cloud</a>
     </nav>
 
-    <header class="max-w-4xl mx-auto text-center py-20 px-6">
-        <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-6">Your Files. <br><span class="text-blue-500 underline decoration-blue-800">Your Port.</span> No DB.</h2>
-        <p class="text-slate-400 text-lg md:text-xl leading-relaxed">
-            TiwutCloud is a high-performance, database-less private cloud system built purely in PHP. Designed for unusual ports, full privacy, and ultra-fast file streaming.
+    <header class="max-w-4xl mx-auto text-center py-24 px-6">
+        <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-6 leading-tight">Your Files. <br><span class="text-blue-500 underline decoration-blue-800">Your Port.</span> No DB.</h2>
+        <p class="text-slate-300 text-lg md:text-xl leading-relaxed font-medium">
+            TiwutCloud is a high-performance private cloud system built purely in PHP. Designed for custom ports, maximum privacy, and ultra-fast AVIF/4K streaming.
         </p>
     </header>
+
     <section id="features" class="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
-        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/30">
+        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/50">
             <i class="fa fa-database text-blue-500 text-3xl mb-4"></i>
             <h3 class="text-xl font-bold mb-2">Zero Database</h3>
-            <p class="text-sm text-slate-400">Uses the filesystem and JSON for metadata. No SQL injections, no complex backups, just folders and files.</p>
+            <p class="text-sm text-slate-300">Uses the filesystem and JSON for metadata. No SQL injections, no complex backups, just folders and files.</p>
         </div>
-        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/30">
+        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/50">
             <i class="fa fa-bolt text-blue-500 text-3xl mb-4"></i>
             <h3 class="text-xl font-bold mb-2">Max Speed</h3>
-            <p class="text-sm text-slate-400">Direct binary streaming via PHP allows for maximum port throughput, supporting massive files without memory limits.</p>
+            <p class="text-sm text-slate-300">Direct binary streaming via PHP allows for maximum port throughput, supporting massive files without memory limits.</p>
         </div>
-        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/30">
+        <div class="glass p-8 rounded-[2.5rem] transition hover:border-blue-500/50">
             <i class="fa fa-mobile-screen text-blue-500 text-3xl mb-4"></i>
             <h3 class="text-xl font-bold mb-2">PWA Ready</h3>
-            <p class="text-sm text-slate-400">Install it on your iPhone or Android as a native app. Works perfectly in full-screen on tablets and computers.</p>
+            <p class="text-sm text-slate-300">Install it on your iPhone or Android as a native app. Works perfectly in full-screen on tablets and computers.</p>
         </div>
     </section>
+
     <section id="setup" class="max-w-4xl mx-auto py-20 px-6">
         <h2 class="text-3xl font-black italic mb-12 text-center">INITIAL SETUP</h2>
         <div class="space-y-12">
             <div class="flex gap-6">
                 <div class="step-number w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-xl">1</div>
                 <div>
-                    <h4 class="text-xl font-bold mb-2 text-blue-400">Configuration</h4>
-                    <p class="text-slate-400 mb-4">Edit <code>config.php</code> and set your <code>admin_password</code>. This key protects your entire cloud.</p>
+                    <h4 class="text-xl font-bold mb-2 text-blue-400 uppercase tracking-wide">Configuration</h4>
+                    <p class="text-slate-300 mb-4">Edit <code>config.php</code> and set your <code>admin_password</code>. This key protects your entire cloud.</p>
                 </div>
             </div>
             <div class="flex gap-6">
                 <div class="step-number w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-xl">2</div>
                 <div>
-                    <h4 class="text-xl font-bold mb-2 text-blue-400">Directory Permissions</h4>
-                    <p class="text-slate-400">Ensure the <code>/storage</code> and <code>/data</code> folders are writable. Use <code>chmod 777</code> if you are on a Linux server.</p>
+                    <h4 class="text-xl font-bold mb-2 text-blue-400 uppercase tracking-wide">Directory Permissions</h4>
+                    <p class="text-slate-300">Ensure the <code>/storage</code> and <code>/data</code> folders are writable. Use <code>chmod 777</code> if you are on a Linux server.</p>
                 </div>
             </div>
             <div class="flex gap-6">
                 <div class="step-number w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-xl">3</div>
                 <div>
-                    <h4 class="text-xl font-bold mb-2 text-blue-400">Icon & Branding</h4>
-                    <p class="text-slate-400">Place your <code>icon.ico</code> in the root folder. TiwutCloud will automatically detect and use it as your favicon.</p>
+                    <h4 class="text-xl font-bold mb-2 text-blue-400 uppercase tracking-wide">Icon & Branding</h4>
+                    <p class="text-slate-300">Place your <code>icon.ico</code> in the root folder. TiwutCloud will automatically detect and use it as your favicon.</p>
                 </div>
             </div>
         </div>
@@ -81,30 +124,28 @@
 
     <section id="usage" class="max-w-6xl mx-auto p-6 pb-40">
         <div class="glass rounded-[3rem] p-10 md:p-20 overflow-hidden relative">
-            <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-600/10 blur-[100px] rounded-full"></div>
-            
-            <h2 class="text-4xl font-black italic mb-10 text-center">HOW TO USE</h2>
+            <h2 class="text-4xl font-black italic mb-10 text-center">CLOUD USAGE</h2>
             
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
-                    <h4 class="text-xl font-bold mb-4 text-white uppercase tracking-widest text-sm"><i class="fa fa-upload text-blue-500 mr-3"></i> Uploading</h4>
-                    <p class="text-slate-400 mb-4">You can use the <b>+</b> button to upload files, or simply <b>drag and drop</b> files from your computer directly into the browser window.</p>
+                    <h4 class="text-lg font-bold mb-4 text-white uppercase tracking-widest flex items-center"><i class="fa fa-upload text-blue-500 mr-3"></i> Uploading</h4>
+                    <p class="text-slate-300 mb-4 leading-relaxed">Use the <b>+</b> button to upload files, or simply <b>drag and drop</b> files from your computer directly into the browser window.</p>
                     
-                    <h4 class="text-xl font-bold mb-4 text-white uppercase tracking-widest text-sm mt-8"><i class="fa fa-share-nodes text-emerald-500 mr-3"></i> Rich Sharing</h4>
-                    <p class="text-slate-400">Click the "Edit" icon on any file and select <b>Share UI Page</b>. This generates a professional landing page link for recipients, featuring a high-quality preview and metadata.</p>
+                    <h4 class="text-lg font-bold mb-4 text-white uppercase tracking-widest mt-8 flex items-center"><i class="fa fa-share-nodes text-emerald-500 mr-3"></i> Rich Sharing</h4>
+                    <p class="text-slate-300 leading-relaxed">Click the "Edit" icon on any file and select <b>Share UI Page</b>. This generates a professional landing page link for recipients, featuring a high-quality preview.</p>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-4 text-white uppercase tracking-widest text-sm"><i class="fa fa-expand text-blue-500 mr-3"></i> Previews</h4>
-                    <p class="text-slate-400 mb-4">TiwutCloud renders images and videos in perfect quality. Use the <b>Full Screen</b> icon in the preview window for an immersive experience.</p>
+                    <h4 class="text-lg font-bold mb-4 text-white uppercase tracking-widest flex items-center"><i class="fa fa-expand text-blue-500 mr-3"></i> Previews</h4>
+                    <p class="text-slate-300 mb-4 leading-relaxed">TiwutCloud renders images and videos in perfect quality. Use the <b>Full Screen</b> icon in the preview window for an immersive experience.</p>
                     
-                    <h4 class="text-xl font-bold mb-4 text-white uppercase tracking-widest text-sm mt-8"><i class="fa fa-link text-emerald-500 mr-3"></i> Share Manager</h4>
-                    <p class="text-slate-400">Access the <b>Link</b> icon in the header to manage all active shares. You can refresh the list, copy links to your clipboard, or revoke access instantly.</p>
+                    <h4 class="text-lg font-bold mb-4 text-white uppercase tracking-widest mt-8 flex items-center"><i class="fa fa-link text-emerald-500 mr-3"></i> Share Manager</h4>
+                    <p class="text-slate-300 leading-relaxed">Access the <b>Link</b> icon in the header to manage all active shares. You can refresh the list, copy links, or revoke access instantly.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-10 opacity-30 text-xs tracking-[0.3em] font-bold uppercase">
+    <footer class="text-center py-10 opacity-40 text-[10px] tracking-[0.4em] font-bold uppercase">
         &copy; 2025 Tiwut &bull; <a href="https://tiwut.de/cookie-banner-information.html" style="color: #a0a0a0; text-decoration: none; font-size: 0.8rem;">Legal Notice</a>
     </footer>
 
